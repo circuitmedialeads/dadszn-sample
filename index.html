@@ -448,6 +448,61 @@ html{scroll-padding-top:60px}
 .gallery-stage{scroll-margin-top:44px}
 #add-form{scroll-margin-top:56px}
 @media(max-width:820px){.announce{padding-top:calc(11px + env(safe-area-inset-top,0px))}}
+
+/* brand polish pass (Nov 20): dadszn.com palette (white, black, Kelly green buttons), Oswald section heads at one size, roomier section rhythm, buy bar always on */
+:root{--green:#25843b;--kelly:#30a64a;--hover:#2a2a2a;--line:#d9d9d9}
+.offer{border-left-color:var(--kelly)}
+.pillars p i{color:var(--kelly)}
+.ship-bar i{background:var(--kelly)}
+.assure li:before{border-color:var(--green)}
+.button.primary-buy,.quick-buy .button:not(.checkout-link),#cart-dialog .button.checkout-link{background:var(--green);border-color:var(--green);color:#fff}
+.button.primary-buy:hover,.quick-buy .button:not(.checkout-link):hover,#cart-dialog .button.checkout-link:hover{background:var(--hover);border-color:var(--hover)}
+.quick-buy .button.checkout-link{background:var(--green);border-color:var(--green);color:#fff}
+.button:hover{background:var(--hover);border-color:var(--hover)}
+.buy-actions .checkout-link:hover{color:#fff}
+.newsletter-form button:hover,.bundle-size:hover{border-color:var(--green)}
+.newsletter-form button:hover{background:var(--green)}
+.sizing-heading h2,.bundle-head h2,.info-heading h2,.gift h2{font:500 clamp(30px,3vw,42px)/1 var(--display);letter-spacing:0;text-transform:uppercase}
+.gift h2{margin-bottom:12px}
+.sizing-heading,.bundle-head,.info-heading{margin-bottom:24px;padding-bottom:16px}
+.bundle-head h2{margin-top:2px}
+.buybox .price-row{padding:18px 0 14px}
+.offer{margin-bottom:6px}
+.size-picker{margin-top:20px}
+.buy-actions{margin-top:16px}
+.giftcard-note{margin-top:18px}
+.soldout-note{margin-top:6px}
+.assure{margin-top:20px;padding-top:18px}
+.buy-help{margin-top:16px}
+.bundle-info{padding:14px 16px 16px;gap:4px}
+.gift-rows{margin-top:28px}
+.pillars{padding:56px 18px 52px}
+.pillars span{margin-top:16px}
+.newsletter{padding-block:28px}
+@media(min-width:821px){
+.product{padding-top:40px;padding-bottom:96px}
+.sizing,.bundle{padding-bottom:96px}
+.quick-info.gift{padding-bottom:80px}
+.accordion{padding-bottom:88px}
+}
+@media(max-width:820px){
+.buybox{padding-top:26px}
+.product{padding-bottom:56px}
+.sizing,.bundle{padding-bottom:56px}
+.quick-info.gift{padding-bottom:48px}
+.accordion{padding-bottom:52px}
+.sizing-heading h2,.bundle-head h2,.gift h2{font-size:32px}
+.sizing-heading,.bundle-head{margin-bottom:20px}
+.pillars{padding:44px 16px 42px}
+.newsletter{padding-block:26px}
+}
+/* buy bar at the bottom stays on the whole time, like the free shipping banner at the top */
+.quick-buy,.quick-buy.visible{display:flex;transform:none;opacity:1;pointer-events:auto}
+body{padding-bottom:calc(74px + env(safe-area-inset-bottom))}
+@media(min-width:821px){
+.quick-buy{padding:10px clamp(18px,4vw,60px) calc(10px + env(safe-area-inset-bottom))}
+.quick-buy .button{min-width:240px}
+}
 </style>
 </head>
 <body>
@@ -595,7 +650,7 @@ function renderBar(){
   document.querySelector('.choose-size').hidden=!!qty||!!size;
   barAdd.hidden=!!qty||!size;
   if(size)barAdd.textContent='Add to cart · '+size;
-  const on=!!qty||(phone.matches&&buyOff);
+  const on=true;
   quickBuy.classList.toggle('visible',on);
   quickBuy.setAttribute('aria-hidden',String(!on));
 }
